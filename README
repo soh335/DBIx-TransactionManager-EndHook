@@ -1,0 +1,39 @@
+This is Perl module DBIx::TransactionManager::EndHook.
+
+INSTALLATION
+
+Type the following command:
+
+    $ curl -L http://cpanmin.us | perl - DBIx::TransactionManager::EndHook
+
+Or install cpanm and then run the following command to install
+DBIx::TransactionManager::EndHook:
+
+    $ cpanm DBIx::TransactionManager::EndHook
+
+If you get an archive of this distribution, unpack it and build it
+as per the usual:
+
+    $ tar xzf DBIx-TransactionManager-EndHook-$version.tar.gz
+    $ cd DBIx-TransactionManager-EndHook-$version
+    $ perl Makefile.PL
+    $ make && make test
+
+Then install it:
+
+    $ make install
+
+DOCUMENTATION
+
+DBIx::TransactionManager::EndHook documentation is available as in POD. So you can do:
+
+    $ perldoc DBIx::TransactionManager::EndHook
+
+to read the documentation online with your favorite pager.
+
+LICENSE AND COPYRIGHT
+
+Copyright (c) 2013, Soh Kitahara. All rights reserved.
+
+This library is free software; you can redistribute it and/or modify
+it under the same terms as Perl itself.
