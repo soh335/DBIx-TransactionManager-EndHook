@@ -133,4 +133,26 @@ subtest 'can call add_end_hook only in transactions' => sub {
     } qr/^only can call add_end_hook in transaction/;
 };
 
+subtest 'clear hook on rollback' => sub {
+    my $txn_manager = new_txn_manager();
+
+    my $should_be_1_after_commit = 0;
+    {
+        my $scope = $txn_manager->txn_scope;
+        $txn_manager->add_end_hook( sub {
+            $should_be_1_after_commit = 1;
+        });
+        # end of scope
+    }
+
+    is $should_be_1_after_commit, 0;
+
+    {
+        my $scope = $txn_manager->txn_scope;
+        $scope->commit;
+    }
+
+    is $should_be_1_after_commit, 0;
+};
+
 done_testing;

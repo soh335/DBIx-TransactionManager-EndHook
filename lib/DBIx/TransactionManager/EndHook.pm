@@ -53,7 +53,7 @@ sub txn_commit {
 sub txn_rollback {
     my $self = shift;
     my $ret = $orig_txn_rollback->($self);
-    $self->{_end_hooks} ||= [];
+    $self->{_end_hooks} = [];
     $ret;
 }
 
