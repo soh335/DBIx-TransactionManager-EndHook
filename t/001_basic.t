@@ -17,6 +17,8 @@ sub new_txn_manager {
     DBIx::TransactionManager->new( $dbh );
 }
 
+local $SIG{ __WARN__ } = sub {};
+
 subtest 'no nest transaction' => sub {
     my $txn_manager = new_txn_manager();
     my $txn = $txn_manager->txn_scope;
