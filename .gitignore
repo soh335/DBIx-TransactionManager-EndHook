@@ -2,6 +2,7 @@ DBIx-TransactionManager-EndHook-*
 .*
 !.git*
 !.shipit
+!.travis.yml
 inc/
 *.o
 *.obj
