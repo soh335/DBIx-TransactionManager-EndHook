@@ -17,6 +17,8 @@ sub new_txn_manager {
     DBIx::TransactionManager->new( $dbh );
 }
 
+local $SIG{ __WARN__ } = sub {};
+
 subtest 'no nest transaction' => sub {
     my $txn_manager = new_txn_manager();
     my $txn = $txn_manager->txn_scope;
@@ -131,6 +133,28 @@ subtest 'can call add_end_hook only in transactions' => sub {
     throws_ok {
         $txn_manager->add_end_hook(sub{});
     } qr/^only can call add_end_hook in transaction/;
+};
+
+subtest 'clear hook on rollback' => sub {
+    my $txn_manager = new_txn_manager();
+
+    my $should_be_1_after_commit = 0;
+    {
+        my $scope = $txn_manager->txn_scope;
+        $txn_manager->add_end_hook( sub {
+            $should_be_1_after_commit = 1;
+        });
+        # end of scope
+    }
+
+    is $should_be_1_after_commit, 0;
+
+    {
+        my $scope = $txn_manager->txn_scope;
+        $scope->commit;
+    }
+
+    is $should_be_1_after_commit, 0;
 };
 
 done_testing;
