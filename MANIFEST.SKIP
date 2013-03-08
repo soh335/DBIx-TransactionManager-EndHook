@@ -11,6 +11,8 @@
 \b_darcs\b
 \B\.cvsignore$
 ^\.travis\.yml$
+^\.shipit$
+^\.dimconfig$
 
 # Avoid VMS specific MakeMaker generated files
 \bDescrip.MMS$
