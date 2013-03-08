@@ -3,7 +3,7 @@ use 5.008_001;
 use strict;
 use warnings;
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 use DBIx::TransactionManager;
 
 use Try::Tiny;
@@ -66,7 +66,7 @@ DBIx::TransactionManager::EndHook - hook of DBIx::TransactionManager commit
 
 =head1 VERSION
 
-This document describes DBIx::TransactionManager::EndHook version 0.01.
+This document describes DBIx::TransactionManager::EndHook version 0.02.
 
 =head1 SYNOPSIS
 
