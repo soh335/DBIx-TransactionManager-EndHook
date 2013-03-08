@@ -6,8 +6,9 @@ BEGIN {
 
     # author requires, or bundled modules
     my @devmods = qw(
-        Module::Install::AuthorTests     0.002
-        Module::Install::Repository      0.06
+        Module::Install::AuthorTests
+        Module::Install::ReadmeFromPod
+        Module::Install::Repository
     );
 
     my @not_available;
@@ -33,6 +34,7 @@ use inc::Module::Install;
 $Module::Install::AUTHOR = 0 if $ENV{TRAVIS};
 
 all_from 'lib/DBIx/TransactionManager/EndHook.pm';
+readme_from 'lib/DBIx/TransactionManager/EndHook.pm';
 
 requires 'DBIx::TransactionManager';
 requires 'Try::Tiny';

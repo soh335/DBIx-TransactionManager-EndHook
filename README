@@ -1,39 +1,52 @@
-This is Perl module DBIx::TransactionManager::EndHook.
+NAME
+    DBIx::TransactionManager::EndHook - hook of DBIx::TransactionManager
+    commit
 
-INSTALLATION
+VERSION
+    This document describes DBIx::TransactionManager::EndHook version 0.01.
 
-Type the following command:
+SYNOPSIS
+        use DBIx::TransactionManager;
+        use DBIx::TransactionManager::EndHook;
 
-    $ curl -L http://cpanmin.us | perl - DBIx::TransactionManager::EndHook
+        my $txn = $tm->txn_scope;
 
-Or install cpanm and then run the following command to install
-DBIx::TransactionManager::EndHook:
+        $dbh->do('...');
+        $tm->add_end_hook(sub {
+            # do something
+        });
 
-    $ cpanm DBIx::TransactionManager::EndHook
+        $txn->commit;
 
-If you get an archive of this distribution, unpack it and build it
-as per the usual:
+DESCRIPTION
+    DBIx::TransactionManager::EndHook propide hook point that all
+    transactions handled by DBIx::TransactionManager are excuted
+    successfully.
 
-    $ tar xzf DBIx-TransactionManager-EndHook-$version.tar.gz
-    $ cd DBIx-TransactionManager-EndHook-$version
-    $ perl Makefile.PL
-    $ make && make test
+METHODS
+  $tm->add_end_hook(sub{});
+    Add hook subroutine to DBIx::TransactionManager. If call it without
+    transactions, it throw Exception. And these hooks are executed only all
+    transactions are executed successfully. If some transactions are failed,
+    these aren't executed.
 
-Then install it:
+DEPENDENCIES
+    Perl 5.8.1 or later.
 
-    $ make install
+BUGS
+    All complex software has bugs lurking in it, and this module is no
+    exception. If you find a bug please either email me, or add the bug to
+    cpan-RT.
 
-DOCUMENTATION
+SEE ALSO
+    DBIx::TransactionManager
 
-DBIx::TransactionManager::EndHook documentation is available as in POD. So you can do:
-
-    $ perldoc DBIx::TransactionManager::EndHook
-
-to read the documentation online with your favorite pager.
+AUTHOR
+    Soh Kitahara <sugarbabe335@gmail.com>
 
 LICENSE AND COPYRIGHT
+    Copyright (c) 2013, Soh Kitahara. All rights reserved.
 
-Copyright (c) 2013, Soh Kitahara. All rights reserved.
+    This library is free software; you can redistribute it and/or modify it
+    under the same terms as Perl itself.
 
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself.
